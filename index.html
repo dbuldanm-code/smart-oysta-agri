@@ -1,253 +1,934 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oysta Frameworks & Smart Oysta Agri - IoT & Mushroom Cultivation</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oysta Frameworks & Smart Oysta Agri</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .product-card {
+      transition: all 0.25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans">
 
-    <!-- Header / Navbar -->
-    <header class="bg-emerald-700 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <img src="logooysta.jpeg" alt="Oysta Frameworks Logo" class="h-10 w-10 rounded-full object-cover border border-emerald-500 bg-white">
-                <div>
-                    <h1 class="text-base md:text-lg font-bold tracking-wide leading-tight">Oysta Frameworks</h1>
-                    <p class="text-xs text-emerald-200">Smart Oysta Agri</p>
-                </div>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#beranda" class="hover:text-emerald-200">Beranda</a>
-                <a href="#produk" class="hover:text-emerald-200">Katalog Produk & Paket</a>
-            </nav>
-            <div>
-                <button onclick="bukaCheckout()" class="bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg text-sm font-medium transition flex items-center space-x-1">
-                    <span>🛒 Keranjang</span>
-                    <span id="cart-count" class="bg-amber-500 text-slate-900 px-2 py-0.5 rounded-full text-xs font-bold">0</span>
-                </button>
-            </div>
-        </div>
-    </header>
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- Hero Section -->
-    <section id="beranda" class="bg-gradient-to-br from-emerald-900 to-emerald-700 text-white py-16 px-4 text-center">
-        <div class="max-w-3xl mx-auto flex flex-col items-center">
-            <img src="logooysta.jpeg" alt="Oysta Frameworks Logo" class="h-24 w-24 rounded-full object-cover shadow-lg border-4 border-emerald-500 mb-6 bg-white">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">Oysta Frameworks & Smart Agri</h2>
-            <p class="text-emerald-100 text-lg mb-8">Grow Smarter • Sustain Together. Pusat otomatisasi kumbung jamur, suplai baglog berkualitas tinggi, layanan workshop budidaya jamur tiram profesional, dan alat otomatisasi penyiraman tanaman.</p>
-            <a href="#produk" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-8 py-3 rounded-xl shadow-lg transition">Lihat Katalog Lengkap</a>
-        </div>
-    </section>
+<!-- NAVBAR -->
+<nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- Produk & Paket Section -->
-    <section id="produk" class="max-w-6xl mx-auto px-4 py-16">
-        <h3 class="text-2xl font-bold text-center mb-2">Katalog Produk & Paket Budidaya</h3>
-        <p class="text-slate-500 text-center mb-10">Pilih perangkat IoT, ragam paket baglog, atau ikuti workshop pelatihan langsung.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Produk 1: IoT Smart Watering Kit -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="text-4xl mb-4 text-center">🌱</div>
-                    <h4 class="font-bold text-lg mb-2">IoT Smart Watering Kit</h4>
-                    <p class="text-slate-600 text-sm mb-4">Alat siram tanaman otomatis berbasis ESP32 dengan sensor kelembaban tanah dan kontrol aplikasi.</p>
-                    <div class="text-emerald-700 font-extrabold text-xl">Rp 375.000</div>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="tambahKeKeranjang('IoT Smart Watering Kit', 375000)" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium py-2 rounded-xl transition">Tambah ke Keranjang</button>
-                </div>
-            </div>
-
-            <!-- Produk 2: Mistmaker Kumbung Jamur -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="text-4xl mb-4 text-center">💨</div>
-                    <h4 class="font-bold text-lg mb-2">Mistmaker Kumbung Jamur</h4>
-                    <p class="text-slate-600 text-sm mb-4">Pengatur kelembaban otomatis khusus kumbung jamur tiram agar miselium tumbuh subur.</p>
-                    <div class="text-emerald-700 font-extrabold text-xl">Rp 450.000</div>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="tambahKeKeranjang('Mistmaker Kumbung Jamur', 450000)" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium py-2 rounded-xl transition">Tambah ke Keranjang</button>
-                </div>
-            </div>
-
-            <!-- Produk 3: Sensor Data Logger Box -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="text-4xl mb-4 text-center">📊</div>
-                    <h4 class="font-bold text-lg mb-2">Sensor Data Logger Box</h4>
-                    <p class="text-slate-600 text-sm mb-4">Perangkat pencatat suhu dan kelembaban lingkungan terpadu untuk riset pertanian & agrikultur.</p>
-                    <div class="text-emerald-700 font-extrabold text-xl">Rp 525.000</div>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="tambahKeKeranjang('Sensor Data Logger Box', 525000)" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium py-2 rounded-xl transition">Tambah ke Keranjang</button>
-                </div>
-            </div>
-
-            <!-- Paket Baglog 100 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="text-4xl mb-4 text-center">🍄</div>
-                    <h4 class="font-bold text-lg mb-2">Paket 100 Baglog</h4>
-                    <p class="text-slate-600 text-sm mb-4">Media tanam jamur siap susun berkualitas tinggi untuk skala pemula atau uji coba.</p>
-                    <div class="text-emerald-700 font-extrabold text-xl">Rp 300.000</div>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="tambahKeKeranjang('Paket 100 Baglog', 300000)" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium py-2 rounded-xl transition">Tambah ke Keranjang</button>
-                </div>
-            </div>
-
-            <!-- Paket Baglog 1000 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="text-4xl mb-4 text-center">🍄</div>
-                    <h4 class="font-bold text-lg mb-2">Paket 1000 Baglog</h4>
-                    <p class="text-slate-600 text-sm mb-4">Paket produktif skala menengah untuk pengisian kumbung siap panen.</p>
-                    <div class="text-emerald-700 font-extrabold text-xl">Rp 3.000.000</div>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="tambahKeKeranjang('Paket 1000 Baglog', 3000000)" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium py-2 rounded-xl transition">Tambah ke Keranjang</button>
-                </div>
-            </div>
-
-            <!-- Paket Baglog 10000 -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
-                <div class="p-6">
-                    <div class="text-4xl mb-4 text-center">🍄</div>
-                    <h4 class="font-bold text-lg mb-2">Paket 10.000 Baglog</h4>
-                    <p class="text-slate-600 text-sm mb-4">Paket skala besar / komersial industri untuk suplai rutin kumbung jamur Anda.</p>
-                    <div class="text-emerald-700 font-extrabold text-xl">Rp 30.000.000</div>
-                </div>
-                <div class="p-6 pt-0">
-                    <button onclick="tambahKeKeranjang('Paket 10.000 Baglog', 30000000)" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white font-medium py-2 rounded-xl transition">Tambah ke Keranjang</button>
-                </div>
-            </div>
-
-            <!-- Paket Workshop Budidaya -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between md:col-span-3">
-                <div class="p-6 md:flex justify-between items-center">
-                    <div>
-                        <div class="text-4xl mb-2">👨‍🏫</div>
-                        <h4 class="font-bold text-xl mb-1">Paket Workshop Budidaya Jamur Tiram (2 Hari + 100 Baglog)</h4>
-                        <p class="text-slate-600 text-sm">Pelatihan intensif langsung praktik selama 2 hari menguasai teknik pembuatan baglog, perawatan kumbung, hingga panen, sudah termasuk bonus 100 baglog siap susun.</p>
-                    </div>
-                    <div class="mt-4 md:mt-0 text-left md:text-right">
-                        <div class="text-emerald-700 font-extrabold text-2xl mb-3">Rp 600.000</div>
-                        <button onclick="tambahKeKeranjang('Paket Workshop Budidaya Jamur Tiram (2 Hari + 100 Baglog)', 600000)" class="bg-emerald-700 hover:bg-emerald-600 text-white font-medium px-6 py-2.5 rounded-xl transition">Tambah ke Keranjang</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Checkout Modal (Popup Keranjang dengan Kolom Referral Otomatis) -->
-    <div id="checkout-modal" class="hidden fixed inset-0 bg-slate-900 bg-opacity-50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl">
-            <h3 class="text-xl font-bold mb-4">Keranjang Belanja Anda</h3>
-            <div id="cart-items" class="mb-4 text-sm text-slate-600 max-h-40 overflow-y-auto border-b pb-2">
-                Keranjang masih kosong.
-            </div>
-            
-            <!-- Kolom Input Kode Referral -->
-            <div class="mb-4">
-                <label class="block text-xs font-semibold text-slate-600 mb-1">Kode Referral / Partner:</label>
-                <input type="text" id="kode-referral" placeholder="Kosong jika tanpa referral" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
-                <p id="info-referral" class="text-xs text-emerald-600 mt-1 hidden">✓ Terdeteksi otomatis dari link partner.</p>
-            </div>
-
-            <div class="flex justify-between font-bold text-lg mb-6">
-                <span>Total:</span>
-                <span id="cart-total">Rp 0</span>
-            </div>
-            <div class="flex space-x-3">
-                <button onclick="tutupCheckout()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 rounded-xl transition">Tutup</button>
-                <button onclick="checkoutWhatsApp()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2 rounded-xl transition">Checkout via WA</button>
-            </div>
-        </div>
+    <div class="flex items-center gap-3">
+      <img src="logooysta.jpeg"
+           alt="Oysta Logo"
+           class="h-12 w-auto">
+      <div>
+        <h1 class="font-bold text-lg">Oysta Frameworks</h1>
+        <p class="text-xs text-gray-500">Smart Oysta Agri</p>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center text-sm border-t border-slate-800">
-        <p>&copy; 2026 Oysta Frameworks & Smart Oysta Agri. Grow Smarter • Sustain Together.</p>
-    </footer>
+    <div class="hidden md:flex gap-6 text-sm font-semibold">
+      <a href="#home" class="hover:text-green-600">Home</a>
+      <a href="#katalog" class="hover:text-green-600">Katalog</a>
+      <a href="#tentang" class="hover:text-green-600">Tentang</a>
+      <a href="#kontak" class="hover:text-green-600">Kontak</a>
+    </div>
 
-    <script>
-        let keranjang = [];
+    <button onclick="bukaKeranjang()"
+            class="relative bg-green-600 text-white px-4 py-2 rounded-lg">
+      🛒 Keranjang
+      <span id="jumlahKeranjang"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+        0
+      </span>
+    </button>
 
-        // Otomatis membaca parameter ?ref= dari URL saat website pertama kali dibuka
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const refCode = urlParams.get('ref');
-            if (refCode) {
-                const inputRef = document.getElementById('kode-referral');
-                inputRef.value = refCode;
-                document.getElementById('info-referral').classList.remove('hidden');
-            }
-        };
+  </div>
+</nav>
 
-        function tambahKeKeranjang(nama, harga) {
-            keranjang.push({ nama, harga });
-            updateCartCount();
-            alert(nama + ' berhasil ditambahkan ke keranjang!');
-        }
 
-        function updateCartCount() {
-            document.getElementById('cart-count').innerText = keranjang.length;
-        }
+<!-- HERO -->
+<section id="home"
+         class="pt-32 pb-20 bg-gradient-to-r from-green-700 to-green-500 text-white">
 
-        function bukaCheckout() {
-            const container = document.getElementById('cart-items');
-            const totalEl = document.getElementById('cart-total');
-            
-            if (keranjang.length === 0) {
-                container.innerHTML = 'Keranjang masih kosong.';
-                totalEl.innerText = 'Rp 0';
-            } else {
-                let html = '<ul class="space-y-2">';
-                let total = 0;
-                keranjang.forEach((item, index) => {
-                    html += `<li class="flex justify-between"><span>${item.nama}</span> <span>Rp ${item.harga.toLocaleString('id-ID')}</span></li>`;
-                    total += item.harga;
-                });
-                html += '</ul>';
-                container.innerHTML = html;
-                totalEl.innerText = 'Rp ' + total.toLocaleString('id-ID');
-            }
-            document.getElementById('checkout-modal').classList.remove('hidden');
-        }
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
-        function tutupCheckout() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-        }
+    <div>
+      <p class="uppercase tracking-widest text-sm mb-3">
+        Oysta Frameworks & Smart Agri
+      </p>
 
-        function checkoutWhatsApp() {
-            if (keranjang.length === 0) {
-                alert('Keranjang masih kosong!');
-                return;
-            }
+      <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+        Oysta Frameworks & Smart Agri
+      </h2>
 
-            let nomorWA = '62895339262838'; // Ganti dengan nomor WhatsApp Anda
-            let referral = document.getElementById('kode-referral').value.trim();
+      <p class="text-lg md:text-xl mb-8">
+        Solusi teknologi sederhana, murah, dan mudah diterapkan
+        untuk pertanian, budidaya jamur, irigasi, dan sistem IoT.
+      </p>
 
-            let pesan = 'Halo Oysta Frameworks, saya ingin memesan produk berikut:%0A';
-            let total = 0;
-            keranjang.forEach((item, index) => {
-                pesan += `%0A- ${item.nama} (Rp ${item.harga.toLocaleString('id-ID')})`;
-                total += item.harga;
-            });
-            
-            pesan += `%0A%0A*Total Pembayaran: Rp ${total.toLocaleString('id-ID')}*`;
-            
-            if (referral !== '') {
-                pesan += `%0A*Kode Referral / Partner: ${referral}*`;
-            }
-            
-            pesan += `%0A%0AMohon info selanjutnya, terima kasih!`;
+      <div class="flex flex-wrap gap-4">
+        <a href="#katalog"
+           class="bg-white text-green-700 px-6 py-3 rounded-lg font-bold">
+          Lihat Katalog
+        </a>
 
-            window.open(`https://wa.me/${nomorWA}?text=${pesan}`, '_blank');
-        }
-    </script>
+        <a href="#kontak"
+           class="border border-white px-6 py-3 rounded-lg font-bold">
+          Hubungi Kami
+        </a>
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <img src="logooysta.jpeg"
+           alt="Oysta Frameworks"
+           class="max-h-72 w-auto rounded-xl">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- KATALOG -->
+<section id="katalog" class="py-20">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">
+        Katalog Produk & Paket Budidaya
+      </h2>
+
+      <p class="text-gray-600 max-w-3xl mx-auto">
+        Produk pertanian, jamur, irigasi, rak, kumbung modular,
+        dan teknologi IoT dengan sistem yang sederhana dan terjangkau.
+      </p>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+
+      <!-- AJ-50 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-50
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp50.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Basic Watering Kit
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Sistem penyiraman manual murah menggunakan selang dan nozzle
+          dengan jangkauan sekitar 5 meter.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-50 Basic Watering Kit',50000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-100 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-100
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp100.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Timer Watering Kit
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Penyiraman otomatis berbasis timer untuk kebun, tanaman,
+          dan kumbung jamur.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-100 Timer Watering Kit',100000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-150 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-150
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp150.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Timer Watering Pro
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Versi lebih fleksibel dengan pengaturan waktu penyiraman
+          untuk kebutuhan budidaya harian.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-150 Timer Watering Pro',150000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-200 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-200
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp200.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Multi-Nozzle Watering
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Sistem distribusi air menggunakan beberapa nozzle
+          untuk penyiraman area yang lebih luas.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-200 Multi-Nozzle Watering',200000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-300 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-300
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp300.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Auto Humidity Kit
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Sistem pengaturan kelembapan otomatis untuk mendukung
+          lingkungan budidaya jamur.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-300 Auto Humidity Kit',300000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-400 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-400
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp400.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Smart Mist Kit
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Sistem misting untuk menjaga kelembapan ruang budidaya
+          dengan kontrol yang lebih praktis.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-400 Smart Mist Kit',400000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-500 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-500
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp500.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Smart Watering Pro
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Paket penyiraman pintar untuk kebutuhan kebun dan
+          budidaya jamur dengan kontrol otomatis.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-500 Smart Watering Pro',500000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-R100 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-R100
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp300.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Rak Baja Ringan 100 Baglog
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Rak modular baja ringan untuk kapasitas sekitar 100 baglog
+          dengan desain sederhana dan hemat tempat.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-R100 Rak Baja Ringan 100 Baglog',300000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-R500 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-R500
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp1.000.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Rak Baja Ringan 500 Baglog
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Rak budidaya jamur kapasitas besar dengan konstruksi
+          modular yang dapat dikembangkan bertahap.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-R500 Rak Baja Ringan 500 Baglog',1000000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-K100 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-K100
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp1.350.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Kumbung Modular 100 Baglog
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Kumbung modular menggunakan rangka baja ringan dan
+          material tekstil/terpal untuk kapasitas sekitar 100 baglog.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-K100 Kumbung Modular 100 Baglog',1350000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-K200 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-K200
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp2.200.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Kumbung Modular 200 Baglog
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Versi lebih besar dengan konstruksi modular baja ringan
+          dan penutup tekstil/terpal.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-K200 Kumbung Modular 200 Baglog',2200000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-B100 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-B100
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp400.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Paket Baglog 100
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Paket awal budidaya jamur untuk skala kecil dan
+          percobaan rumah tangga.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-B100 Paket Baglog 100',400000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-B1000 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-B1000
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp4.000.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Paket Baglog 1.000
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Paket budidaya jamur skala usaha dengan kapasitas
+          sekitar 1.000 baglog.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-B1000 Paket Baglog 1000',4000000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-P100 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-P100
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp1.500.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Paket Jamur 100 Baglog
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Paket lengkap awal budidaya jamur dengan kumbung,
+          rak, dan kebutuhan dasar budidaya.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-P100 Paket Jamur 100 Baglog',1500000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-P100A -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-P100A
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp1.650.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Paket Jamur 100 Auto
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Paket budidaya 100 baglog dengan tambahan sistem
+          penyiraman/kelembapan otomatis.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-P100A Paket Jamur 100 Auto',1650000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-PRO -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-PRO
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp2.000.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Paket Jamur Smart
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Paket budidaya dengan sistem kontrol kelembapan dan
+          penyiraman untuk pengembangan usaha jamur.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-PRO Paket Jamur Smart',2000000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+      <!-- AJ-W100 -->
+      <div class="product-card bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+          <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-bold">
+            AJ-W100
+          </span>
+          <span class="text-green-700 font-bold text-xl">
+            Rp500.000
+          </span>
+        </div>
+
+        <h3 class="text-xl font-bold mb-3">
+          Workshop Budidaya Jamur
+        </h3>
+
+        <p class="text-gray-600 mb-5">
+          Pelatihan dasar budidaya jamur, pembuatan kumbung,
+          pengaturan kelembapan, dan pengelolaan produksi.
+        </p>
+
+        <button onclick="tambahKeKeranjang('AJ-W100 Workshop Budidaya Jamur',500000)"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- TENTANG -->
+<section id="tentang" class="py-20 bg-white">
+
+  <div class="max-w-6xl mx-auto px-6 text-center">
+
+    <h2 class="text-4xl font-bold mb-6">
+      Tentang Oysta
+    </h2>
+
+    <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+      Oysta Frameworks & Smart Oysta Agri mengembangkan solusi
+      sederhana dan terjangkau untuk kebutuhan pertanian,
+      budidaya jamur, irigasi, dan teknologi IoT.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- KONTAK -->
+<section id="kontak" class="py-20 bg-gray-100">
+
+  <div class="max-w-5xl mx-auto px-6 text-center">
+
+    <h2 class="text-4xl font-bold mb-6">
+      Hubungi Kami
+    </h2>
+
+    <p class="text-gray-600 mb-8">
+      Untuk pemesanan produk, kerja sama, reseller, atau konsultasi
+      teknologi pertanian dan budidaya jamur.
+    </p>
+
+    <a href="https://wa.me/62895339262838"
+       target="_blank"
+       class="inline-block bg-green-600 text-white px-8 py-4 rounded-xl font-bold">
+      WhatsApp Kami
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-8">
+
+  <div class="max-w-7xl mx-auto px-6 text-center">
+
+    <p class="font-bold mb-2">
+      Oysta Frameworks & Smart Oysta Agri
+    </p>
+
+    <p class="text-gray-400 text-sm">
+      Solusi sederhana untuk pertanian dan budidaya jamur.
+    </p>
+
+    <p class="text-gray-500 text-xs mt-4">
+      © 2026 Oysta Frameworks. All rights reserved.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<!-- MODAL KERANJANG -->
+<div id="modalKeranjang"
+     class="hidden fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center px-4">
+
+  <div class="bg-white rounded-2xl w-full max-w-lg p-6">
+
+    <div class="flex justify-between items-center mb-6">
+
+      <h2 class="text-2xl font-bold">
+        Keranjang Belanja
+      </h2>
+
+      <button onclick="tutupKeranjang()"
+              class="text-gray-500 text-2xl">
+        ×
+      </button>
+
+    </div>
+
+    <div id="isiKeranjang" class="space-y-3 mb-6">
+    </div>
+
+
+    <div class="border-t pt-4 mb-4">
+
+      <div class="flex justify-between font-bold text-lg">
+        <span>Total</span>
+        <span id="totalKeranjang">
+          Rp0
+        </span>
+      </div>
+
+    </div>
+
+
+    <!-- REFERRAL -->
+    <div class="mb-5">
+
+      <label class="block font-semibold mb-2">
+        Kode Referral
+      </label>
+
+      <input id="kodeReferral"
+             type="text"
+             placeholder="Masukkan kode referral"
+             class="w-full border rounded-lg px-4 py-3">
+
+    </div>
+
+
+    <button onclick="checkoutWhatsApp()"
+            class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">
+      Checkout via WhatsApp
+    </button>
+
+  </div>
+</div>
+
+
+<script>
+
+let keranjang = [];
+
+
+/* TAMBAH PRODUK */
+function tambahKeKeranjang(nama, harga) {
+
+  const produk = keranjang.find(item => item.nama === nama);
+
+  if (produk) {
+    produk.qty++;
+  } else {
+    keranjang.push({
+      nama: nama,
+      harga: harga,
+      qty: 1
+    });
+  }
+
+  updateKeranjang();
+
+  alert(nama + " ditambahkan ke keranjang.");
+}
+
+
+/* UPDATE KERANJANG */
+function updateKeranjang() {
+
+  const jumlah = keranjang.reduce(
+    (total, item) => total + item.qty,
+    0
+  );
+
+  document.getElementById("jumlahKeranjang").innerText = jumlah;
+
+
+  const isi = document.getElementById("isiKeranjang");
+
+  if (keranjang.length === 0) {
+
+    isi.innerHTML =
+      '<p class="text-gray-500 text-center">Keranjang masih kosong.</p>';
+
+    document.getElementById("totalKeranjang").innerText = "Rp0";
+
+    return;
+  }
+
+
+  let html = "";
+  let total = 0;
+
+
+  keranjang.forEach((item, index) => {
+
+    const subtotal = item.harga * item.qty;
+
+    total += subtotal;
+
+
+    html += `
+      <div class="border rounded-lg p-3">
+
+        <div class="flex justify-between gap-3">
+
+          <div>
+            <p class="font-semibold">
+              ${item.nama}
+            </p>
+
+            <p class="text-sm text-gray-500">
+              Rp${item.harga.toLocaleString("id-ID")}
+              × ${item.qty}
+            </p>
+          </div>
+
+          <button
+            onclick="hapusProduk(${index})"
+            class="text-red-500 text-sm">
+            Hapus
+          </button>
+
+        </div>
+
+        <p class="font-bold mt-2">
+          Rp${subtotal.toLocaleString("id-ID")}
+        </p>
+
+      </div>
+    `;
+  });
+
+
+  isi.innerHTML = html;
+
+  document.getElementById("totalKeranjang").innerText =
+    "Rp" + total.toLocaleString("id-ID");
+}
+
+
+/* HAPUS PRODUK */
+function hapusProduk(index) {
+
+  keranjang.splice(index, 1);
+
+  updateKeranjang();
+}
+
+
+/* BUKA KERANJANG */
+function bukaKeranjang() {
+
+  updateKeranjang();
+
+  document
+    .getElementById("modalKeranjang")
+    .classList.remove("hidden");
+}
+
+
+/* TUTUP KERANJANG */
+function tutupKeranjang() {
+
+  document
+    .getElementById("modalKeranjang")
+    .classList.add("hidden");
+}
+
+
+/* CHECKOUT WHATSAPP */
+function checkoutWhatsApp() {
+
+  if (keranjang.length === 0) {
+
+    alert("Keranjang masih kosong.");
+
+    return;
+  }
+
+
+  let pesan =
+    "Halo Oysta, saya ingin melakukan pemesanan:%0A%0A";
+
+
+  let total = 0;
+
+
+  keranjang.forEach(item => {
+
+    const subtotal = item.harga * item.qty;
+
+    total += subtotal;
+
+
+    pesan +=
+      "- " +
+      item.nama +
+      " x" +
+      item.qty +
+      " = Rp" +
+      subtotal.toLocaleString("id-ID") +
+      "%0A";
+  });
+
+
+  pesan +=
+    "%0ATotal: Rp" +
+    total.toLocaleString("id-ID");
+
+
+  const referral =
+    document.getElementById("kodeReferral").value.trim();
+
+
+  if (referral) {
+
+    pesan +=
+      "%0AKode Referral: " +
+      referral;
+  }
+
+
+  const nomor =
+    "62895339262838";
+
+
+  const url =
+    "https://wa.me/" +
+    nomor +
+    "?text=" +
+    pesan;
+
+
+  window.open(url, "_blank");
+}
+
+
+/* AUTO REFERRAL DARI URL */
+const params =
+  new URLSearchParams(window.location.search);
+
+const ref =
+  params.get("ref");
+
+
+if (ref) {
+
+  document.getElementById("kodeReferral").value =
+    ref;
+}
+
+</script>
+
 </body>
 </html>
